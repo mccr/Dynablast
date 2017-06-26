@@ -7,7 +7,6 @@ function mapToGrid (mapSelector){
   }
   return grid;
 }
-
   var maps = [
       [
       "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
