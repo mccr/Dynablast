@@ -3,7 +3,8 @@ body {
 }
 
 #board {
-  background-color: black;
+  background: url('./assets/Blocks/BackgroundTile.png');
+  background-repeat: repeat;
   position: relative;
   width: 960px;
   height: 640px;
@@ -17,19 +18,20 @@ body {
   width: 32px;
   height: 32px;
     &.empty {
-    background-color: white;
-    background-size: 100%;
+      background: url('./assets/Blocks/BackgroundTile.png');
+      background-size: 100%;
     }
     &.wall {
-    background-color: red;
-    background-size: 100%;
+      background: url('./assets/Blocks/SolidBlock.png');
+      background-size: 100%;
     }
     &.solidTile {
-
+      background: url('./assets/Blocks/Portal.png');
+      background-size: 100%;
     }
     &.brick {
-    background-color: gray;
-    background-size: 100%;
+      background: url('./assets/Blocks/ExplodableBlock.png');
+      background-size: 100%;
     }
 }
 
@@ -40,12 +42,12 @@ body {
   width: 32px;
   height: 32px;
   &.flag1 {
-  background-color: yellow;
-  background-size: 100%;
+    background: url('./assets/green-flag.png');
+    background-size: 100%;
   }
   &.flag2 {
-  background-color: purple;
-  background-size: 100%;
+    background: url('./assets/red-flag.png');
+    background-size: 100%;
   }
 }
 
@@ -57,11 +59,44 @@ body {
   width: 32px;
   height: 32px;
   &.player1 {
-    background-color: #fabada;
-    background-size: 100%;
+    background-color: red;
+    // &.up {
+    //   background: url('./assets/Bomberman/Back/Bman_B_f01 copy.png');
+    //   background-repeat: no-repeat;
+    // }
+    // &.down {
+    //   background: url('./assets/Bomberman/Front/Bman_Front copy.png');
+    //   background-repeat: no-repeat;
+    // }
+    // &.right {
+    //   background: url('./assets/Bomberman/Side/Bman_F_f01 copy.png');
+    //   background-repeat: no-repeat;
+    // }
+    // &.left {
+    //   background: url('./assets/Bomberman/Side/Bman_left copy.png');
+    //   background-repeat: no-repeat;
+    // }
   }
   &.player2 {
-    background-color: green;
-    background-size: 100%;
+    &.up {
+      background: url('./assets/Creep/Back/Creep_B_f01.png');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+    &.down {
+      background: url('./assets/Creep/Front/Creep_F_f01.png');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+    &.right {
+      background: url('./assets/Creep/Side/Creep_S_f00.png');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+    &.left {
+      background: url('./assets/Creep/Side/left.png');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
   }
 }

@@ -17,7 +17,9 @@ Game.prototype.start = function() {
     this.gridPositionP2 = players[2][1];
     this.maps = players[3];
     this.players = {
-      player1: new Player(this.player1Position, this.gridPositionP1, this.maps),
-      player2: new Player(this.player2Position, this.gridPositionP2, this.maps)
+      player1: new Player(this.player1Position, this.gridPositionP1, this.maps, true),
+      player2: new Player(this.player2Position, this.gridPositionP2, this.maps, false)
     };
+    //$('.player1').addClass('down');
+    $('.player2').addClass('down');
     };

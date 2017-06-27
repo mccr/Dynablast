@@ -1,10 +1,12 @@
 var game;
 
-$(document).ready(function(){
+$(document).ready(function() {
   game = new Game();
 
-  $(document).on( "keydown", movePlayer);
-  //$('#start').on("click", startGame);
+  $(document).on('keydown', movePlayer);
+  //$(document).on('keydown', bombDrop);
+  $('.empty').on('click', solidTileDrop);
+  //$('#start').on('click', startGame);
 
 
   function movePlayer(e) {
@@ -22,8 +24,39 @@ $(document).ready(function(){
       case 37: //left
         playerMove = "3";
         break;
+      case 32:
+      console.log('case 32');
+        game.players.player1.dropBomb(true);
+        break;
     }
-    console.log(playerMove + ' player move');
-    game.players.player1.moveForward(playerMove);
+
+      game.players.player1.moveForward(playerMove);
+    // if(game.players.player1.active){
+    //
+    // } else {
+    //   game.players.player2.moveForward(playerMove);
+    // }
+
+  }
+
+  // function bombDrop (e) {
+  //   var bomb;
+  //   if(e.keycode === 32){
+  //     bomb = true;
+  //     game.players.player1.dropBomb(bomb);
+  //   }
+  //   // if(game.players.player1.active){
+  //   //
+  //   // } else {
+  //   //   game.players.player2.dropBomb(bomb);
+  //   // }
+  // }
+
+  function solidTileDrop () {
+    if(game.players.player1.active){
+      game.players.player1.dropSolidTile();
+    } else {
+      game.players.player2.dropSolidTile();
+    }
   }
 });

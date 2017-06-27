@@ -9,8 +9,8 @@ function Board(row, col, tileSize) {
 }
 
 Board.prototype.renderBoard = function() {
-  var html = "",
-      playersPositions = [];
+  var  playersPositions = [];
+  var grid;
   //$('#board').empty();
 
   for (var x = 0; x < this.row; x++) {
@@ -33,10 +33,15 @@ Board.prototype.renderBoard = function() {
         classTile = 'players player2';
         playersPositions.push({col: y, row: x});
       }
-      html += ('<div id="' + y + '-' + x + '" class="' + classTile + '" style="{top:' + (y * this.tileSize) + 'px;left:' + (x * this.tileSize) + 'px}"></div>');
+      grid = $('<div>').addClass(classTile).attr({
+        top: ' '+ (y * this.tileSize) + 'px',
+        left:' '+ (x * this.tileSize) + 'px',
+        id: ''+y+'-'+x
+      });
+      $('#board').append(grid);
     }
   }
-  $('#board').append(html);
+
   return playersPositions;
 };
 

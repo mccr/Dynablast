@@ -1,65 +1,47 @@
-function Player(position, gridPosition, maps) {
+function Player(position, gridPosition, maps, active) {
   this.position = position;
   this.direction = 2; //0: up, 1: right, 2: down, 3: left
   this.gridPosition = gridPosition;
   this.maps = maps;
+  this.bombs = 3;
+  this.solidTile = 1;
+  this.active = active;
 }
 
 Player.prototype.moveForward = function(direction) {
-  var id,
-      prevId;
-      this.direction = parseInt(direction);
-      console.log(this.direction);
+  this.direction = parseInt(direction);
 
   switch (this.direction) {
     case 0:
       if (this.isPathForward()) {
-        id='#'+this.gridPosition.col+'-'+(this.gridPosition.row-1);
-        prevId = '#'+this.gridPosition.col+'-'+this.gridPosition.row;
-        $('div'+prevId).removeClass('players player1');
-        $('div'+prevId).addClass('tile empty');
-        $('div'+id).removeClass('tile empty');
-        $('div'+id).addClass('players player1');
-        this.updateGridPosition();
+        this._up();
+        this._updateGridPosition();
       }
       break;
     case 1:
       if (this.isPathForward()) {
-        id='#'+(this.gridPosition.col+1)+'-'+this.gridPosition.row;
-        prevId = '#'+this.gridPosition.col+'-'+this.gridPosition.row;
-        $('div'+prevId).removeClass('players player1');
-        $('div'+prevId).addClass('tile empty');
-        $('div'+id).removeClass('tile empty');
-        $('div'+id).addClass('players player1');
-        this.updateGridPosition();
+        this._right();
+        this._updateGridPosition();
       }
       break;
     case 2:
       if (this.isPathForward()) {
-        id='#'+this.gridPosition.col+'-'+(this.gridPosition.row+1);
-        prevId = '#'+this.gridPosition.col+'-'+this.gridPosition.row;
-        $('div'+prevId).removeClass('players player1');
-        $('div'+prevId).addClass('tile empty');
-        $('div'+id).removeClass('tile empty');
-        $('div'+id).addClass('players player1');
-        this.updateGridPosition();
+        this._down();
+        this._updateGridPosition();
       }
       break;
     case 3:
       if (this.isPathForward()) {
-        id='#'+(this.gridPosition.col-1)+'-'+this.gridPosition.row;
-        prevId = '#'+this.gridPosition.col+'-'+this.gridPosition.row;
-        $('div'+prevId).removeClass('players player1');
-        $('div'+prevId).addClass('tile empty');
-        $('div'+id).removeClass('tile empty');
-        $('div'+id).addClass('players player1');
-        this.updateGridPosition();
+        this._left();
+        this._updateGridPosition();
       }
       break;
   }
 };
 
-Player.prototype.dropBomb = function() {
+Player.prototype.dropBomb = function(bomb) {
+    this.bombs--;
+    console.log(this.bombs);
 
 };
 
@@ -68,19 +50,39 @@ Player.prototype.dropSolidTile = function() {
 };
 
 Player.prototype._up = function() {
-
+    var id = '#' + this.gridPosition.col + '-' + (this.gridPosition.row - 1);
+    var prevId = '#' + this.gridPosition.col + '-' + this.gridPosition.row;
+    $('div' + prevId).removeClass('players player1');
+    $('div' + prevId).addClass('tile empty');
+    $('div' + id).removeClass('tile empty');
+    $('div' + id).addClass('players player1');
 };
 
 Player.prototype._down = function() {
-
+  var id = '#' + this.gridPosition.col + '-' + (this.gridPosition.row + 1);
+  var prevId = '#' + this.gridPosition.col + '-' + this.gridPosition.row;
+  $('div' + prevId).removeClass('players player1');
+  $('div' + prevId).addClass('tile empty');
+  $('div' + id).removeClass('tile empty');
+  $('div' + id).addClass('players player1');
 };
 
 Player.prototype._right = function() {
-
+  var id = '#' + (this.gridPosition.col + 1) + '-' + this.gridPosition.row;
+  var prevId = '#' + this.gridPosition.col + '-' + this.gridPosition.row;
+  $('div' + prevId).removeClass('players player1');
+  $('div' + prevId).addClass('tile empty');
+  $('div' + id).removeClass('tile empty');
+  $('div' + id).addClass('players player1');
 };
 
 Player.prototype._left = function() {
-
+  var id = '#' + (this.gridPosition.col - 1) + '-' + this.gridPosition.row;
+  var prevId = '#' + this.gridPosition.col + '-' + this.gridPosition.row;
+  $('div' + prevId).removeClass('players player1');
+  $('div' + prevId).addClass('tile empty');
+  $('div' + id).removeClass('tile empty');
+  $('div' + id).addClass('players player1');
 };
 
 Player.prototype.isPathForward = function() {
@@ -102,27 +104,21 @@ Player.prototype.isPathForward = function() {
   return response;
 };
 
-Player.prototype.updateGridPosition = function(){
-  switch(this.direction){
+Player.prototype._updateGridPosition = function() {
+  this.maps[this.gridPosition.row][this.gridPosition.col] = 'E';
+  switch (this.direction) {
     case 0:
-      this.maps[this.gridPosition.row][this.gridPosition.col] = 'E'; //prev cell empty
       this.gridPosition.row -= 1;
-      this.maps[this.gridPosition.row][this.gridPosition.col] = '1'; //actual cell player
       break;
     case 1:
-      this.maps[this.gridPosition.row][this.gridPosition.col] = 'E'; //prev cell empty
       this.gridPosition.col += 1;
-      this.maps[this.gridPosition.row][this.gridPosition.col] = '1';
       break;
     case 2:
-      this.maps[this.gridPosition.row][this.gridPosition.col] = 'E'; //prev cell empty
       this.gridPosition.row += 1;
-      this.maps[this.gridPosition.row][this.gridPosition.col] = '1';
       break;
     case 3:
-      this.maps[this.gridPosition.row][this.gridPosition.col] = 'E'; //prev cell empty
       this.gridPosition.col -= 1;
-      this.maps[this.gridPosition.row][this.gridPosition.col] = '1';
       break;
   }
+  this.maps[this.gridPosition.row][this.gridPosition.col] = '1';
 };
