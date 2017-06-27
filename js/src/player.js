@@ -5,51 +5,55 @@ function Player(position, gridPosition, maps) {
   this.maps = maps;
 }
 
-Player.prototype.moveForward = function() {
+Player.prototype.moveForward = function(direction) {
   var id,
       prevId;
+      this.direction = parseInt(direction);
+      console.log(this.direction);
 
   switch (this.direction) {
     case 0:
       if (this.isPathForward()) {
         id='#'+this.gridPosition.col+'-'+(this.gridPosition.row-1);
-        prevId = '#'+this.gridPosition.col+'-'+(this.gridPosition.row);
+        prevId = '#'+this.gridPosition.col+'-'+this.gridPosition.row;
         $('div'+prevId).removeClass('players player1');
         $('div'+prevId).addClass('tile empty');
         $('div'+id).removeClass('tile empty');
         $('div'+id).addClass('players player1');
+        this.updateGridPosition();
       }
       break;
     case 1:
       if (this.isPathForward()) {
         id='#'+(this.gridPosition.col+1)+'-'+this.gridPosition.row;
-        prevId = '#'+this.gridPosition.col+'-'+(this.gridPosition.row);
+        prevId = '#'+this.gridPosition.col+'-'+this.gridPosition.row;
         $('div'+prevId).removeClass('players player1');
         $('div'+prevId).addClass('tile empty');
         $('div'+id).removeClass('tile empty');
         $('div'+id).addClass('players player1');
+        this.updateGridPosition();
       }
       break;
     case 2:
       if (this.isPathForward()) {
         id='#'+this.gridPosition.col+'-'+(this.gridPosition.row+1);
-        console.log(id)
-        prevId = '#'+this.gridPosition.col+'-'+(this.gridPosition.row);
-        console.log(prevId)
+        prevId = '#'+this.gridPosition.col+'-'+this.gridPosition.row;
         $('div'+prevId).removeClass('players player1');
         $('div'+prevId).addClass('tile empty');
         $('div'+id).removeClass('tile empty');
         $('div'+id).addClass('players player1');
+        this.updateGridPosition();
       }
       break;
     case 3:
       if (this.isPathForward()) {
         id='#'+(this.gridPosition.col-1)+'-'+this.gridPosition.row;
-        prevId = '#'+this.gridPosition.col+'-'+(this.gridPosition.row);
+        prevId = '#'+this.gridPosition.col+'-'+this.gridPosition.row;
         $('div'+prevId).removeClass('players player1');
         $('div'+prevId).addClass('tile empty');
         $('div'+id).removeClass('tile empty');
         $('div'+id).addClass('players player1');
+        this.updateGridPosition();
       }
       break;
   }
@@ -96,4 +100,29 @@ Player.prototype.isPathForward = function() {
       break;
   }
   return response;
+};
+
+Player.prototype.updateGridPosition = function(){
+  switch(this.direction){
+    case 0:
+      this.maps[this.gridPosition.row][this.gridPosition.col] = 'E'; //prev cell empty
+      this.gridPosition.row -= 1;
+      this.maps[this.gridPosition.row][this.gridPosition.col] = '1'; //actual cell player
+      break;
+    case 1:
+      this.maps[this.gridPosition.row][this.gridPosition.col] = 'E'; //prev cell empty
+      this.gridPosition.col += 1;
+      this.maps[this.gridPosition.row][this.gridPosition.col] = '1';
+      break;
+    case 2:
+      this.maps[this.gridPosition.row][this.gridPosition.col] = 'E'; //prev cell empty
+      this.gridPosition.row += 1;
+      this.maps[this.gridPosition.row][this.gridPosition.col] = '1';
+      break;
+    case 3:
+      this.maps[this.gridPosition.row][this.gridPosition.col] = 'E'; //prev cell empty
+      this.gridPosition.col -= 1;
+      this.maps[this.gridPosition.row][this.gridPosition.col] = '1';
+      break;
+  }
 };
