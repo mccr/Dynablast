@@ -9,7 +9,7 @@ function Board(row, col, tileSize) {
 }
 
 Board.prototype.renderBoard = function() {
-  var  playersPositions = [];
+  var playersPosition = [];
   var grid;
   //$('#board').empty();
 
@@ -28,29 +28,29 @@ Board.prototype.renderBoard = function() {
         classTile = 'flags flag2';
       } else if (this.maps[x][y] == '1') {
         classTile = 'players player1';
-        playersPositions.push({col: y, row: x});
+        playersPosition.push({
+          col: y,
+          row: x
+        });
       } else if (this.maps[x][y] == '2') {
         classTile = 'players player2';
-        playersPositions.push({col: y, row: x});
+        playersPosition.push({
+          col: y,
+          row: x
+        });
       }
       grid = $('<div>').addClass(classTile).attr({
-        top: ' '+ (y * this.tileSize) + 'px',
-        left:' '+ (x * this.tileSize) + 'px',
+        top: ''+(y * this.tileSize)+'px',
+        left: ''+(x * this.tileSize)+'px',
         id: ''+y+'-'+x
       });
       $('#board').append(grid);
     }
   }
-
-  return playersPositions;
-};
-
-Board.prototype.playersPosition = function(gridPosition) {
-  var players = [
-    [$('.player1').position().top, $('.player1').position().left],
-    [$('.player2').position().top, $('.player2').position().left],
-    gridPosition,
-    this.maps,
-  ];
+  var players = {
+    player1: playersPosition[0],
+    player2: playersPosition[1],
+    maps: this.maps
+  };
   return players;
 };

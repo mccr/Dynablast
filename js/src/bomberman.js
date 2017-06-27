@@ -5,7 +5,10 @@ $(document).ready(function() {
 
   $(document).on('keydown', movePlayer);
   //$(document).on('keydown', bombDrop);
-  $('.empty').on('click', solidTileDrop);
+  // $('.tile.empty').on('click', function(){
+  //   console.log(this);
+  //   console.log('solidTileDrop');
+  // });
   //$('#start').on('click', startGame);
 
 
@@ -26,11 +29,11 @@ $(document).ready(function() {
         break;
       case 32:
       console.log('case 32');
-        game.players.player1.dropBomb(true);
+        game.player1.dropBomb(true);
         break;
     }
 
-      game.players.player1.moveForward(playerMove);
+      game.player1.moveForward(playerMove);
     // if(game.players.player1.active){
     //
     // } else {
@@ -53,10 +56,15 @@ $(document).ready(function() {
   // }
 
   function solidTileDrop () {
-    if(game.players.player1.active){
-      game.players.player1.dropSolidTile();
-    } else {
-      game.players.player2.dropSolidTile();
-    }
+    console.log(this);
+    console.log('solidTileDrop');
+    this.removeClass('empty');
+    this.addClass('solidTile');
+    //game.players.player1.dropSolidTile();
+    // if(game.players.player1.active){
+    //
+    // } else {
+    //   game.players.player2.dropSolidTile();
+    // }
   }
 });

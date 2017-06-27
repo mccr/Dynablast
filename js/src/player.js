@@ -1,5 +1,4 @@
-function Player(position, gridPosition, maps, active) {
-  this.position = position;
+function Player(gridPosition, maps, active) {
   this.direction = 2; //0: up, 1: right, 2: down, 3: left
   this.gridPosition = gridPosition;
   this.maps = maps;
@@ -48,11 +47,16 @@ Player.prototype.dropBomb = function(bomb) {
       width: '32px'
     });
     $('#board > div'+id).append(bombing);
+    var bombOut = setTimeout(function(){
+      $('#board > div'+id).empty();
+    },1 * 1000);
 
 };
 
-Player.prototype.dropSolidTile = function() {
-
+Player.prototype.dropSolidTile = function(element) {
+  console.log(element);
+  element.removeClass('empty');
+  element.addClass('solidTile');
 };
 
 Player.prototype._up = function() {
