@@ -39,6 +39,7 @@ Player.prototype.moveForward = function(direction) {
 };
 
 Player.prototype.dropBomb = function(bomb) {
+  //if(bomb && this.bombs > 3){
     this.bombs--;
     console.log(this.bombs);
     var id = '#'+this.gridPosition.col+'-'+this.gridPosition.row;
@@ -46,17 +47,33 @@ Player.prototype.dropBomb = function(bomb) {
       src: 'css/assets/Bomb/Bomb_f01.png',
       width: '32px'
     });
+    var flame = $('<img>').attr({
+      src: 'css/assets/Flame/Flame_F02.png',
+      width: '32px'
+    });
     $('#board > div'+id).append(bombing);
     var bombOut = setTimeout(function(){
       $('#board > div'+id).empty();
+      $('#board > div'+id).append(flame);
+      var flameOut = setTimeout(function(){
+        $('#board > div'+id).empty();
+      }, 1 * 1000);
     },1 * 1000);
-
+  //}
 };
 
 Player.prototype.dropSolidTile = function(element) {
   console.log(element);
   element.removeClass('empty');
   element.addClass('solidTile');
+  var id = element[0].id;
+  var arr = id.split('-').map(function(n){
+    return parseInt(n);
+  });
+  var y = arr[0];
+  var x = arr[1];
+  console.log(y,x);
+  this.maps[x][y] = 'S';
 };
 
 Player.prototype._up = function() {

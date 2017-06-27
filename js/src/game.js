@@ -12,9 +12,9 @@ Game.prototype.start = function() {
     $('.player2').addClass('down');
     var that = this;
     $('.tile.empty').on('click', function(){
-        console.log(event)
-        console.log($(this))
-        console.log(that)
+        // console.log(event)
+        // console.log($(this))
+        // console.log(that)
         that.player1.dropSolidTile($(this));
     });
 };
