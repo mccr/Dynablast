@@ -42,6 +42,12 @@ Player.prototype.moveForward = function(direction) {
 Player.prototype.dropBomb = function(bomb) {
     this.bombs--;
     console.log(this.bombs);
+    var id = '#'+this.gridPosition.col+'-'+this.gridPosition.row;
+    var bombing = $('<img>').attr({
+      src: 'css/assets/Bomb/Bomb_f01.png',
+      width: '32px'
+    });
+    $('#board > div'+id).append(bombing);
 
 };
 
@@ -52,37 +58,37 @@ Player.prototype.dropSolidTile = function() {
 Player.prototype._up = function() {
     var id = '#' + this.gridPosition.col + '-' + (this.gridPosition.row - 1);
     var prevId = '#' + this.gridPosition.col + '-' + this.gridPosition.row;
-    $('div' + prevId).removeClass('players player1');
+    $('div' + prevId).removeClass();
     $('div' + prevId).addClass('tile empty');
     $('div' + id).removeClass('tile empty');
-    $('div' + id).addClass('players player1');
+    $('div' + id).addClass('players player1 up');
 };
 
 Player.prototype._down = function() {
   var id = '#' + this.gridPosition.col + '-' + (this.gridPosition.row + 1);
   var prevId = '#' + this.gridPosition.col + '-' + this.gridPosition.row;
-  $('div' + prevId).removeClass('players player1');
+  $('div' + prevId).removeClass();
   $('div' + prevId).addClass('tile empty');
   $('div' + id).removeClass('tile empty');
-  $('div' + id).addClass('players player1');
+  $('div' + id).addClass('players player1 down');
 };
 
 Player.prototype._right = function() {
   var id = '#' + (this.gridPosition.col + 1) + '-' + this.gridPosition.row;
   var prevId = '#' + this.gridPosition.col + '-' + this.gridPosition.row;
-  $('div' + prevId).removeClass('players player1');
+  $('div' + prevId).removeClass();
   $('div' + prevId).addClass('tile empty');
   $('div' + id).removeClass('tile empty');
-  $('div' + id).addClass('players player1');
+  $('div' + id).addClass('players player1 right');
 };
 
 Player.prototype._left = function() {
   var id = '#' + (this.gridPosition.col - 1) + '-' + this.gridPosition.row;
   var prevId = '#' + this.gridPosition.col + '-' + this.gridPosition.row;
-  $('div' + prevId).removeClass('players player1');
+  $('div' + prevId).removeClass();
   $('div' + prevId).addClass('tile empty');
   $('div' + id).removeClass('tile empty');
-  $('div' + id).addClass('players player1');
+  $('div' + id).addClass('players player1 left');
 };
 
 Player.prototype.isPathForward = function() {

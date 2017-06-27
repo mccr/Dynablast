@@ -1,6 +1,4 @@
-body {
-
-}
+body {}
 
 #board {
   background: url('./assets/Blocks/BackgroundTile.png');
@@ -8,95 +6,109 @@ body {
   position: relative;
   width: 960px;
   height: 640px;
-  margin:auto;
+  margin: auto;
 }
 
 .tile {
-  display:inline-block;
-  float:left;
+  display: inline-block;
+  float: left;
   position: relative;
   width: 32px;
   height: 32px;
-    &.empty {
-      background: url('./assets/Blocks/BackgroundTile.png');
-      background-size: 100%;
-    }
-    &.wall {
-      background: url('./assets/Blocks/SolidBlock.png');
-      background-size: 100%;
-    }
-    &.solidTile {
-      background: url('./assets/Blocks/Portal.png');
-      background-size: 100%;
-    }
-    &.brick {
-      background: url('./assets/Blocks/ExplodableBlock.png');
-      background-size: 100%;
-    }
+
+  &.empty {
+    background: url('./assets/Blocks/BackgroundTile.png');
+    background-size: 100%;
+  }
+
+  &.wall {
+    background: url('./assets/Blocks/SolidBlock.png');
+    background-size: 100%;
+  }
+
+  &.solidTile {
+    background: url('./assets/Blocks/Portal.png');
+    background-size: 100%;
+  }
+
+  &.brick {
+    background: url('./assets/Blocks/ExplodableBlock.png');
+    background-size: 100%;
+  }
 }
 
 .flags {
-  display:inline-block;
-  float:left;
+  display: inline-block;
+  float: left;
   position: relative;
   width: 32px;
   height: 32px;
+
   &.flag1 {
     background: url('./assets/green-flag.png');
     background-size: 100%;
   }
+
   &.flag2 {
     background: url('./assets/red-flag.png');
     background-size: 100%;
   }
 }
 
-
 .players {
-  display:inline-block;
-  float:left;
+  display: inline-block;
+  float: left;
   position: relative;
   width: 32px;
   height: 32px;
+
   &.player1 {
-    background-color: red;
-    // &.up {
-    //   background: url('./assets/Bomberman/Back/Bman_B_f01 copy.png');
-    //   background-repeat: no-repeat;
-    // }
-    // &.down {
-    //   background: url('./assets/Bomberman/Front/Bman_Front copy.png');
-    //   background-repeat: no-repeat;
-    // }
-    // &.right {
-    //   background: url('./assets/Bomberman/Side/Bman_F_f01 copy.png');
-    //   background-repeat: no-repeat;
-    // }
-    // &.left {
-    //   background: url('./assets/Bomberman/Side/Bman_left copy.png');
-    //   background-repeat: no-repeat;
-    // }
+    //background-color: red;
+    &.up {
+      background: url('./assets/Bomberman/Back/Bman_B_f01 copy.png');
+      background-repeat: no-repeat;
+    }
+    &.down {
+      background: url('./assets/Bomberman/Front/Bman_Front copy.png');
+      background-repeat: no-repeat;
+    }
+    &.right {
+      background: url('./assets/Bomberman/Side/Bman_F_f01 copy.png');
+      background-repeat: no-repeat;
+    }
+    &.left {
+      background: url('./assets/Bomberman/Side/Bman_left copy.png');
+      background-repeat: no-repeat;
+    }
   }
+
   &.player2 {
     &.up {
       background: url('./assets/Creep/Back/Creep_B_f01.png');
       background-repeat: no-repeat;
       background-size: 100%;
     }
+
     &.down {
       background: url('./assets/Creep/Front/Creep_F_f01.png');
       background-repeat: no-repeat;
       background-size: 100%;
     }
+
     &.right {
       background: url('./assets/Creep/Side/Creep_S_f00.png');
       background-repeat: no-repeat;
       background-size: 100%;
     }
+
     &.left {
       background: url('./assets/Creep/Side/left.png');
       background-repeat: no-repeat;
       background-size: 100%;
     }
   }
+
+.bomb {
+  background: url('./assets/Bomb/Bomb_f01.png');
+}
 }

@@ -20,6 +20,6 @@ Game.prototype.start = function() {
       player1: new Player(this.player1Position, this.gridPositionP1, this.maps, true),
       player2: new Player(this.player2Position, this.gridPositionP2, this.maps, false)
     };
-    //$('.player1').addClass('down');
+    $('.player1').addClass('down');
     $('.player2').addClass('down');
     };
