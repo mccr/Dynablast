@@ -9,29 +9,32 @@ function Player(gridPosition, maps, active) {
 
 Player.prototype.moveForward = function(direction) {
   this.direction = parseInt(direction);
+  var x = this.gridPosition.row,
+      y = this.gridPosition.col,
+      prevId = '#'+y+'-'+x;
 
   switch (this.direction) {
     case 0:
-      if (this.isPathForward()) {
-        this._up();
+      if (this.isPathForward(x,y)) {
+        this._up(prevId,x,y);
         this._updateGridPosition();
       }
       break;
     case 1:
-      if (this.isPathForward()) {
-        this._right();
+      if (this.isPathForward(x,y)) {
+        this._right(prevId,x,y);
         this._updateGridPosition();
       }
       break;
     case 2:
-      if (this.isPathForward()) {
-        this._down();
+      if (this.isPathForward(x,y)) {
+        this._down(prevId,x,y);
         this._updateGridPosition();
       }
       break;
     case 3:
-      if (this.isPathForward()) {
-        this._left();
+      if (this.isPathForward(x,y)) {
+        this._left(prevId,x,y);
         this._updateGridPosition();
       }
       break;
@@ -76,56 +79,52 @@ Player.prototype.dropSolidTile = function(element) {
   this.maps[x][y] = 'S';
 };
 
-Player.prototype._up = function() {
-    var id = '#' + this.gridPosition.col + '-' + (this.gridPosition.row - 1);
-    var prevId = '#' + this.gridPosition.col + '-' + this.gridPosition.row;
+Player.prototype._up = function(prevId,x,y) {
+    var id = '#'+y+'-'+(x-1);
     $('div' + prevId).removeClass();
     $('div' + prevId).addClass('tile empty');
     $('div' + id).removeClass('tile empty');
     $('div' + id).addClass('players player1 up');
 };
 
-Player.prototype._down = function() {
-  var id = '#' + this.gridPosition.col + '-' + (this.gridPosition.row + 1);
-  var prevId = '#' + this.gridPosition.col + '-' + this.gridPosition.row;
+Player.prototype._down = function(prevId,x,y) {
+  var id = '#'+y+'-'+(x+1);
   $('div' + prevId).removeClass();
   $('div' + prevId).addClass('tile empty');
   $('div' + id).removeClass('tile empty');
   $('div' + id).addClass('players player1 down');
 };
 
-Player.prototype._right = function() {
-  var id = '#' + (this.gridPosition.col + 1) + '-' + this.gridPosition.row;
-  var prevId = '#' + this.gridPosition.col + '-' + this.gridPosition.row;
+Player.prototype._right = function(prevId,x,y) {
+  var id = '#'+(y+1)+'-'+x;
   $('div' + prevId).removeClass();
   $('div' + prevId).addClass('tile empty');
   $('div' + id).removeClass('tile empty');
   $('div' + id).addClass('players player1 right');
 };
 
-Player.prototype._left = function() {
-  var id = '#' + (this.gridPosition.col - 1) + '-' + this.gridPosition.row;
-  var prevId = '#' + this.gridPosition.col + '-' + this.gridPosition.row;
+Player.prototype._left = function(prevId,x,y) {
+  var id = '#'+(y-1)+'-'+x;
   $('div' + prevId).removeClass();
   $('div' + prevId).addClass('tile empty');
   $('div' + id).removeClass('tile empty');
   $('div' + id).addClass('players player1 left');
 };
 
-Player.prototype.isPathForward = function() {
+Player.prototype.isPathForward = function(x,y) {
   var response;
   switch (this.direction) {
     case 0:
-      response = ((this.gridPosition.row - 1) >= 0 && (this.maps[this.gridPosition.row - 1][this.gridPosition.col] == 'E')) ? true : false;
+      response = ((x-1) >= 0 && (this.maps[x-1][y] == 'E')) ? true : false;
       break;
     case 1:
-      response = ((this.gridPosition.col + 1 < this.maps[0].length) && (this.maps[this.gridPosition.row][this.gridPosition.col + 1] == 'E')) ? true : false;
+      response = ((y+1 < this.maps[0].length) && (this.maps[x][y+1] == 'E')) ? true : false;
       break;
     case 2:
-      response = ((this.gridPosition.row + 1 < this.maps.length) && (this.maps[this.gridPosition.row + 1][this.gridPosition.col] == 'E')) ? true : false;
+      response = ((x+1 < this.maps.length) && (this.maps[x+1][y] == 'E')) ? true : false;
       break;
     case 3:
-      response = ((this.gridPosition.col - 1 >= 0) && (this.maps[this.gridPosition.row][this.gridPosition.col - 1] == 'E')) ? true : false;
+      response = ((y-1 >= 0) && (this.maps[x][y-1] == 'E')) ? true : false;
       break;
   }
   return response;

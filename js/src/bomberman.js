@@ -3,6 +3,10 @@ var game;
 $(document).ready(function() {
   game = new Game();
 
+  window.onload = function() {
+  game.start();
+};
+
   $(document).on('keydown', movePlayer);
   //$(document).on('keydown', bombDrop);
   // $('.tile.empty').on('click', function(){
