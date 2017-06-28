@@ -31,10 +31,10 @@ $(document).ready(function() {
       case 37: //left
         playerMove = 'W';
         break;
-      // case 32:
-      // console.log('case 32');
-      //   game.player1.dropBomb(true);
-      //   break;
+      case 32:
+      console.log('case 32');
+        game.dropBomb();
+        break;
     }
 
       game.player1.moveForward(playerMove);
