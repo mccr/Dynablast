@@ -1,9 +1,17 @@
 body {}
-
+header {
+  width: 960px;
+  height: 100px;
+  margin: auto;
+  position: relative;
+}
+section {
+  position: relative;
+}
 #board {
   background: url('./assets/Blocks/BackgroundTile.png');
   background-repeat: repeat;
-  position: relative;
+  position: absolute;
   width: 960px;
   height: 640px;
   margin: auto;
@@ -37,6 +45,13 @@ body {}
   }
 }
 
+#objects {
+  position: absolute;
+  width: 960px;
+  height: 640px;
+  margin: auto;
+}
+
 .flags {
   display: inline-block;
   float: left;
@@ -56,9 +71,7 @@ body {}
 }
 
 .players {
-  display: inline-block;
-  float: left;
-  position: relative;
+  position: absolute;
   width: 32px;
   height: 32px;
 

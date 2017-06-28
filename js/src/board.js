@@ -4,40 +4,22 @@ function Board(row, col, tileSize) {
   this.row = row;
   this.col = col;
   this.tileSize = tileSize;
-  this.mapSelector = Math.floor(Math.random() * 3);
-  this.maps = mapToGrid(this.mapSelector);
+  this.mapSelector = 0;
+  //Math.floor(Math.random() * 3);
+  this.map = mapToGrid(this.mapSelector);
 }
 
 Board.prototype.renderBoard = function() {
-  var playersPosition = [];
-  var grid;
   //$('#board').empty();
-
   for (var x = 0; x < this.row; x++) {
     for (var y = 0; y < this.col; y++) {
       var classTile;
-      if (this.maps[x][y] == '*') {
+      if (this.map[x][y] == '*') {
         classTile = 'tile brick';
-      } else if (this.maps[x][y] == 'W') {
+      } else if (this.map[x][y] == 'W') {
         classTile = 'tile wall';
-      } else if (this.maps[x][y] == 'E') {
+      } else if (this.map[x][y] == 'E') {
         classTile = 'tile empty';
-      } else if (this.maps[x][y] == 'A') {
-        classTile = 'flags flag1';
-      } else if (this.maps[x][y] == 'B') {
-        classTile = 'flags flag2';
-      } else if (this.maps[x][y] == '1') {
-        classTile = 'players player1';
-        playersPosition.push({
-          col: y,
-          row: x
-        });
-      } else if (this.maps[x][y] == '2') {
-        classTile = 'players player2';
-        playersPosition.push({
-          col: y,
-          row: x
-        });
       }
       grid = $('<div>').addClass(classTile).attr({
         top: ''+(y * this.tileSize)+'px',
@@ -47,10 +29,4 @@ Board.prototype.renderBoard = function() {
       $('#board').append(grid);
     }
   }
-  var players = {
-    player1: playersPosition[0],
-    player2: playersPosition[1],
-    maps: this.maps
-  };
-  return players;
 };
