@@ -4,6 +4,7 @@ function Game() {
   this.player2 = {};
   this.bombs = 3;
   this.bomb = {};
+  this.turn = 'player1';
 }
 
 Game.prototype.init = function() {
@@ -16,5 +17,38 @@ Game.prototype.init = function() {
 };
 
 Game.prototype.dropBomb = function(){
-  this.bomb.dropBomb(this.player1.top, this.player1.left);
+  if(this.turn === 'player1' && this.bombs > 0){
+      this.bombs --;
+      this.bomb.dropBomb(this.player1.top, this.player1.left);
+  } else if(this.turn === 'player2' && this.bombs > 0){
+    this.bombs --;
+    this.bomb.dropBomb(this.player2.top, this.player2.left);
+  }
+
+};
+
+Game.prototype.isTurn = function(playerMove){
+  if(this.turn === 'player1'){
+    this.player1.moveForward(playerMove);
+    if(this.bombs === 0){
+      this.bombs = 3;
+      this.turn = 'player2';
+    }
+  } else {
+    this.player2.moveForward(playerMove);
+    if(this.bombs === 0){
+      this.bombs = 3;
+      this.turn = 'player1';
+    }
+  }
+};
+
+Game.prototype.changeTurn = function() {
+  if(this.turn === 'player1'){
+    this.turn = 'player2';
+    this.isTurn();
+  } else {
+    this.turn = 'player1';
+    this.isTurn();
+  }
 };

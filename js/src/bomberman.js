@@ -8,6 +8,9 @@ $(document).ready(function() {
 // };
 //
   $(document).on('keydown', movePlayer);
+  $('#skip-turn').on('click', function(){
+      game.changeTurn();
+    });
 //   $(document).on('keydown', bombDrop);
 //   $('.tile.empty').on('click', function(){
 //     console.log(this);
@@ -36,14 +39,7 @@ $(document).ready(function() {
         game.dropBomb();
         break;
     }
-
-      game.player1.moveForward(playerMove);
-//     if(game.players.player1.active){
-//
-//     } else {
-//       game.players.player2.moveForward(playerMove);
-//     }
-//
+    game.isTurn(playerMove);
   }
 //
 //   function bombDrop (e) {
