@@ -3,8 +3,6 @@ function Player(top, left, player, map, tileSize) {
   this.top = top; //row
   this.left = left; //col
   this.map = map;
-  this.bombs = 3;
-  this.solidTile = 1;
   this.playerNumber = player;
   this.tileSize = tileSize;
   this._insertPlayer();
@@ -27,22 +25,26 @@ Player.prototype._insertPlayer = function() {
 
 Player.prototype.moveForward = function(direction) {
   this.direction = direction;
-  $('#player'+this.playerNumber).removeClass().addClass('players player'+this.playerNumber);
+  //$('#player'+this.playerNumber).removeClass().addClass('players player'+this.playerNumber);
 
   switch (this.direction) {
     case 'N':
+    $('#player'+this.playerNumber).removeClass().addClass('players player'+this.playerNumber);
       $('#player'+this.playerNumber).addClass('up');
       this._checkPath();
       break;
     case 'E':
+    $('#player'+this.playerNumber).removeClass().addClass('players player'+this.playerNumber);
       $('#player'+this.playerNumber).addClass('right');
       this._checkPath();
       break;
     case 'S':
+    $('#player'+this.playerNumber).removeClass().addClass('players player'+this.playerNumber);
       $('#player'+this.playerNumber).addClass('down');
       this._checkPath();
       break;
     case 'W':
+    $('#player'+this.playerNumber).removeClass().addClass('players player'+this.playerNumber);
       $('#player'+this.playerNumber).addClass('left');
       this._checkPath();
       break;

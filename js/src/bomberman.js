@@ -11,14 +11,17 @@ $(document).ready(function() {
   $('#skip-turn').on('click', function(){
       game.changeTurn();
     });
-//   $(document).on('keydown', bombDrop);
-//   $('.tile.empty').on('click', function(){
-//     console.log(this);
-//     console.log('solidTileDrop');
-//   });
+
+
+  // emptyTiles.addEventListener('click', function(e){
+  //    e.currentTarget.style.visibility = "hidden";
+  //     console.log('here');
+  //   });
+
+
+      console.log($('.empty'))
 //   $('#start').on('click', startGame);
-//
-//
+
   function movePlayer(e) {
     var playerMove;
     switch (e.keyCode) {
@@ -41,20 +44,7 @@ $(document).ready(function() {
     }
     game.isTurn(playerMove);
   }
-//
-//   function bombDrop (e) {
-//     var bomb;
-//     if(e.keycode === 32){
-//       bomb = true;
-//       game.players.player1.dropBomb(bomb);
-//     }
-//     if(game.players.player1.active){
-//
-//     } else {
-//       game.players.player2.dropBomb(bomb);
-//     }
-//   }
-//
+
 //   function solidTileDrop () {
 //     console.log(this);
 //     console.log('solidTileDrop');
