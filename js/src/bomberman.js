@@ -29,7 +29,6 @@ $(document).ready(function() {
         playerMove = 'W';
         break;
       case 32:
-      console.log('case 32');
         game.dropBomb();
         break;
     }
