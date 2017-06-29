@@ -118,10 +118,10 @@ Game.prototype._newElements = function(players, flags, map, tileSize) {
 };
 
 Game.prototype._activeTurn = function(id) {
-  $(''+id).addClass('highlight');
+  $(id).addClass('highlight');
 };
 Game.prototype._offTurn = function(id) {
-  $(''+id).removeClass('highlight');
+  $(id).removeClass('highlight');
 };
 
 Game.prototype.isTurn = function(playerMove) {

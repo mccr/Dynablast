@@ -1,41 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Bomberman - Capture the flag</title>
-    <link rel="stylesheet" href="./css/style.min.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="./js/src/flags.js"></script>
-    <script type="text/javascript" src="./js/src/maps.js"></script>
-    <script type="text/javascript" src="./js/src/bomb.js"></script>
-    <script type="text/javascript" src="./js/src/player.js"></script>
-    <script type="text/javascript" src="./js/src/board.js"></script>
-    <script type="text/javascript" src="./js/src/game.js"></script>
-    <script type="text/javascript" src="./js/src/bomberman.js"></script>
-  </head>
-  <body>
-    <header>
-      <div class="bombs">
-        <div class="bombs-p1">
-          <span id="1P"><img src="./css/assets/Bomberman/Front/Bman_F_f00.png" alt="">player 1</span>
-          <img src="css/assets/bomb.png" id="p-1">
-          <img src="css/assets/bomb.png" id="p-2">
-          <img src="css/assets/bomb.png" id="p-3">
-        </div>
-        <div class="bombs-p2">
-          <img src="css/assets/bomb.png" id="1">
-          <img src="css/assets/bomb.png" id="2">
-          <img src="css/assets/bomb.png" id="3">
-          <span id="2P">player 2 <img src="./css/assets/Creep/Front/Creep_F_f00.png" alt=""></span>
-        </div>
-      </div>
-      <span>dynablast</span>
-      <button type="button" name="button" id="skip-turn">skip turn</button>
-    </header>
-    <section id="objects">
-      <div class="" id="board">
 
+<head>
+  <meta charset="utf-8">
+  <title>Dynablast</title>
+  <link rel="stylesheet" href="./css/style.min.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="./js/src/flags.js"></script>
+  <script type="text/javascript" src="./js/src/maps.js"></script>
+  <script type="text/javascript" src="./js/src/bomb.js"></script>
+  <script type="text/javascript" src="./js/src/player.js"></script>
+  <script type="text/javascript" src="./js/src/board.js"></script>
+  <script type="text/javascript" src="./js/src/game.js"></script>
+  <script type="text/javascript" src="./js/src/bomberman.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="bombs">
+      <div class="bombs-p1">
+        <span id="1P"><img src="./css/assets/Bomberman/Front/Bman_F_f00.png" alt="">player 1</span>
+        <img src="css/assets/bomb.png" id="p-1">
+        <img src="css/assets/bomb.png" id="p-2">
+        <img src="css/assets/bomb.png" id="p-3">
       </div>
-    </section>
-  </body>
+      <div class="bombs-p2">
+        <img src="css/assets/bomb.png" id="1">
+        <img src="css/assets/bomb.png" id="2">
+        <img src="css/assets/bomb.png" id="3">
+        <span id="2P">player 2 <img src="./css/assets/Creep/Front/Creep_F_f00.png" alt=""></span>
+      </div>
+    </div>
+    <span>dynablast</span>
+    <button type="button" name="button" id="skip-turn">skip turn</button>
+  </header>
+  <section id="objects">
+    <div class="" id="board">
+      <div id="instructions">
+        <h2>INSTRUCTIONS</h2>
+        <ul>
+          <li>Move the players with cursors</li>
+          <li>plant bombs with the space bar</li>
+          <li>Press button "Start" to go and explode some walls!!</li>
+        </ul>
+        <br>
+        <p>You must go through the maze exploding the walls</p>
+        <p>and you have to do it fast</p>
+        <p>try and catch the flag of your opponent and do it before he does</p>
+        <h3>Good Luck!!!</h3>
+      </div>
+    </div>
+  </section>
+</body>
+
 </html>
