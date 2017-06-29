@@ -4,10 +4,10 @@ $(document).ready(function() {
   game = new Game();
 
   $(document).on('keydown', movePlayer);
-  $('#skip-turn').on('click', function(){
-      game.changeTurn();
-    });
-  $('#start').on('click', function(){
+  $('#skip-turn').on('click', function() {
+    game.changeTurn();
+  });
+  $('#start').on('click', function() {
     game.init();
   });
 
