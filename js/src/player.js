@@ -9,44 +9,54 @@ function Player(top, left, player, map, tileSize) {
 }
 
 Player.prototype._insertPlayer = function() {
-  var playerDiv = $('<div>').addClass('players').css({
-    top: ''+(this.top * this.tileSize)+'px',
-    left: ''+(this.left * this.tileSize)+'px'
-  }).attr('id','player'+this.playerNumber);
-  var response;
-  if(this.playerNumber === 1){
-    response = playerDiv.addClass('player1 down');
-  } else {
-    response = playerDiv.addClass('player2 down');
-  }
-  $('#objects').append(response);
+  var playerDiv = $('<div>').addClass('players player' + this.playerNumber + ' down').css({
+    top: '' + (this.top * this.tileSize) + 'px',
+    left: '' + (this.left * this.tileSize) + 'px'
+  }).attr('id', 'player' + this.playerNumber);
+  $('#objects').append(playerDiv);
   this.map[this.top][this.left] = this.playerNumber;
 };
 
 Player.prototype.moveForward = function(direction) {
   this.direction = direction;
-  //$('#player'+this.playerNumber).removeClass().addClass('players player'+this.playerNumber);
-
+  
   switch (this.direction) {
     case 'N':
-    $('#player'+this.playerNumber).removeClass().addClass('players player'+this.playerNumber);
-      $('#player'+this.playerNumber).addClass('up');
+      this._changeDirection();
       this._checkPath();
       break;
     case 'E':
-    $('#player'+this.playerNumber).removeClass().addClass('players player'+this.playerNumber);
-      $('#player'+this.playerNumber).addClass('right');
+      this._changeDirection();
       this._checkPath();
       break;
     case 'S':
-    $('#player'+this.playerNumber).removeClass().addClass('players player'+this.playerNumber);
-      $('#player'+this.playerNumber).addClass('down');
+      this._changeDirection();
       this._checkPath();
       break;
     case 'W':
-    $('#player'+this.playerNumber).removeClass().addClass('players player'+this.playerNumber);
-      $('#player'+this.playerNumber).addClass('left');
+      this._changeDirection();
       this._checkPath();
+      break;
+  }
+};
+
+Player.prototype._changeDirection = function(){
+  switch (this.direction) {
+    case 'N':
+      $('#player' + this.playerNumber).removeClass().addClass('players player' + this.playerNumber);
+      $('#player' + this.playerNumber).addClass('up');
+      break;
+    case 'E':
+      $('#player' + this.playerNumber).removeClass().addClass('players player' + this.playerNumber);
+      $('#player' + this.playerNumber).addClass('right');
+      break;
+    case 'S':
+      $('#player' + this.playerNumber).removeClass().addClass('players player' + this.playerNumber);
+      $('#player' + this.playerNumber).addClass('down');
+      break;
+    case 'W':
+      $('#player' + this.playerNumber).removeClass().addClass('players player' + this.playerNumber);
+      $('#player' + this.playerNumber).addClass('left');
       break;
   }
 };
@@ -117,8 +127,8 @@ Player.prototype._left = function() {
 };
 
 Player.prototype._render = function() {
-  $("#player"+this.playerNumber).css({
-    top: ''+(this.top * this.tileSize)+'px',
-    left: ''+(this.left * this.tileSize)+'px'
+  $("#player" + this.playerNumber).css({
+    top: '' + (this.top * this.tileSize) + 'px',
+    left: '' + (this.left * this.tileSize) + 'px'
   });
 };

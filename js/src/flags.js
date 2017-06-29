@@ -1,4 +1,4 @@
-function Flag(player, top, left, map, tileSize){
+function Flag(top, left, player, map, tileSize){
   this.flagPlayer = player;
   this.flag = 'P'+player;
   this.top = top;

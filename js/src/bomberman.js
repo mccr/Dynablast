@@ -3,23 +3,14 @@ var game;
 $(document).ready(function() {
   game = new Game();
 
-//   window.onload = function() {
-//   game.start();
-// };
-//
+  window.onload = function() {
+  game.init();
+};
+
   $(document).on('keydown', movePlayer);
   $('#skip-turn').on('click', function(){
       game.changeTurn();
     });
-
-
-  // emptyTiles.addEventListener('click', function(e){
-  //    e.currentTarget.style.visibility = "hidden";
-  //     console.log('here');
-  //   });
-
-
-      console.log($('.empty'))
 //   $('#start').on('click', startGame);
 
   function movePlayer(e) {
@@ -44,17 +35,4 @@ $(document).ready(function() {
     }
     game.isTurn(playerMove);
   }
-
-//   function solidTileDrop () {
-//     console.log(this);
-//     console.log('solidTileDrop');
-//     this.removeClass('empty');
-//     this.addClass('solidTile');
-//     game.players.player1.dropSolidTile();
-//     if(game.players.player1.active){
-//
-//     } else {
-//       game.players.player2.dropSolidTile();
-//     }
-//   }
 });

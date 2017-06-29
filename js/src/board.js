@@ -1,12 +1,10 @@
-function Board(row, col, tileSize) {
+function Board(row, col, tileSize, mapSelector) {
   this.heigth = (row - 1) * tileSize;
   this.width = (col - 1) * tileSize;
   this.row = row;
   this.col = col;
   this.tileSize = tileSize;
-  this.mapSelector = 0;
-  //Math.floor(Math.random() * 3);
-  this.map = mapToGrid(this.mapSelector);
+  this.map = mapToGrid(mapSelector);
 }
 
 Board.prototype.renderBoard = function() {

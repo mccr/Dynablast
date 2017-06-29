@@ -1,5 +1,5 @@
 function Game() {
-  this.board = new Board(20, 30, 32);
+  this.board = {};
   this.player1 = {};
   this.player2 = {};
   this.bombs = 3;
@@ -8,18 +8,113 @@ function Game() {
   this.solidTile = 1;
   this.flag1 = {};
   this.flag2 = {};
+  this.mapSelector = Math.floor(Math.random() * 3);
 }
 
 Game.prototype.init = function() {
-  this.board.renderBoard();
-  var tileSize = this.board.tileSize;
-  var map = this.board.map;
-  this.player1 = new Player(1, 1, 1, map, tileSize);
-  this.player2 = new Player(18, 28, 2, map, tileSize);
-  this.flag1 = new Flag(1, 1, 2, map, tileSize);
-  this.flag2 = new Flag(2, 17, 28, map, tileSize);
-  this.bomb = new Bomb(map, tileSize);
+  this.board = new Board(20, 30, 32, this.mapSelector);
+  this._mapSelector();
   //this._dropSolidTileEvent();
+};
+
+Game.prototype._mapSelector = function(){
+  var tileSize = this.board.tileSize,
+      map = this.board.map,
+      players = {},
+      flags = {};
+
+  switch(this.mapSelector){
+    case 0:
+      players = {
+        player1: {
+          top: 1,
+          left: 1,
+          playerNum: 1
+        },
+        player2: {
+          top: 18,
+          left: 28,
+          playerNum: 2
+        }
+      };
+      flags = {
+        flag1: {
+          top: 1,
+          left: 2,
+          flagNum: 1
+        },
+        flag2: {
+          top: 17,
+          left: 28,
+          flagNum: 2
+        }
+      };
+      this._newElements(players, flags, map, tileSize);
+      break;
+    case 1:
+    players = {
+      player1: {
+        top: 1,
+        left: 28,
+        playerNum: 1
+      },
+      player2: {
+        top: 17,
+        left: 1,
+        playerNum: 2
+      }
+    };
+    flags = {
+      flag1: {
+        top: 7,
+        left: 14,
+        flagNum: 1
+      },
+      flag2: {
+        top: 13,
+        left: 14,
+        flagNum: 2
+      }
+    };
+    this._newElements(players, flags, map, tileSize);
+      break;
+    case 2:
+    players = {
+      player1: {
+        top: '1',
+        left: '13',
+        playerNum: 1
+      },
+      player2: {
+        top: '17',
+        left: '13',
+        playerNum: 2
+      }
+    };
+    flags = {
+      flag1: {
+        top: '9',
+        left: '13',
+        flagNum: 1
+      },
+      flag2: {
+        top: '9',
+        left: '14',
+        flagNum: 2
+      }
+    };
+    this._newElements(players, flags, map, tileSize);
+      break;
+  }
+};
+
+Game.prototype._newElements = function(players, flags, map, tileSize){
+  this.board.renderBoard();
+  this.player1 = new Player(players.player1.top, players.player1.left, players.player1.playerNum, map, tileSize);
+  this.player2 = new Player(players.player2.top, players.player2.left, players.player2.playerNum, map, tileSize);
+  this.flag1 = new Flag(flags.flag1.top, flags.flag1.left, flags.flag1.flagNum, map, tileSize);
+  this.flag2 = new Flag(flags.flag2.top, flags.flag2.left, flags.flag2.flagNum, map, tileSize);
+  this.bomb = new Bomb(map, tileSize);
 };
 
 // Game.prototype._dropSolidTileEvent = function() {

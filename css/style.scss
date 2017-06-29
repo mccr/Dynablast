@@ -107,13 +107,15 @@ section {
     }
 
     &.right {
-      background: url('./assets/Creep/Side/Creep_S_f00.png');
+      background: url('./assets/Creep/Side/Creep_S_f04.png');
       background-repeat: no-repeat;
+      background-size: contain;
     }
 
     &.left {
-      background: url('./assets/Creep/Side/left copy.png');
+      background: url('./assets/Creep/Side/left.png');
       background-repeat: no-repeat;
+      background-size: 75%;
     }
   }
 }
