@@ -8,7 +8,7 @@ function Board(row, col, tileSize, mapSelector) {
 }
 
 Board.prototype.renderBoard = function() {
-  //$('#board').empty();
+  $('#board').empty();
   for (var x = 0; x < this.row; x++) {
     for (var y = 0; y < this.col; y++) {
       var classTile;

@@ -3,15 +3,13 @@ var game;
 $(document).ready(function() {
   game = new Game();
 
-  window.onload = function() {
-  game.init();
-};
-
   $(document).on('keydown', movePlayer);
   $('#skip-turn').on('click', function(){
       game.changeTurn();
     });
-//   $('#start').on('click', startGame);
+  $('#start').on('click', function(){
+    game.init();
+  });
 
   function movePlayer(e) {
     var playerMove;
