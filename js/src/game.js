@@ -23,7 +23,7 @@ Game.prototype._newElements = function(players, flags, map, tileSize) {
   this.player2 = new Player(players.player2.top, players.player2.left, players.player2.playerNum, map, tileSize);
   this.flag1 = new Flag(flags.flag1.top, flags.flag1.left, flags.flag1.flagNum, map, tileSize);
   this.flag2 = new Flag(flags.flag2.top, flags.flag2.left, flags.flag2.flagNum, map, tileSize);
-  this.bomb = new Bomb(map, tileSize);
+  this.bomb = new Bomb(map, tileSize, this.player1, this.player2);
 };
 
 Game.prototype._activeTurn = function(id) {
@@ -84,13 +84,6 @@ Game.prototype.dropBomb = function() {
   } else if (this.turn === 'player2' && this.bombs > 0) {
     this.bombs--;
     this.bomb.dropBomb(this.player2.top, this.player2.left);
-  }
-  var near = this.bomb.playerNear(this.player1, this.player2);
-  if(near.player1){
-    alert('player 1 gets burn');
-  }
-  if(near.player2){
-    alert('player 2 gets burn');
   }
 };
 

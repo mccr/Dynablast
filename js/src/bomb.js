@@ -1,20 +1,22 @@
-function Bomb(map, tileSize) {
+function Bomb(map, tileSize, player1, player2) {
 this.tileSize = tileSize;
 this.map = map;
 this.x = 0;
 this.y = 0;
+this.player1 = player1;
+this.player2 = player2;
 }
 
-Bomb.prototype.playerNear = function(player1, player2){
+Bomb.prototype._playerNear = function(){
   var nearFire = {
     player1: false,
     player2: false
   };
 
-  if(player1.top === this.x && player1.left === this.y){
+  if(this.player1.top === this.x && this.player1.left === this.y){
     nearFire.player1 = true;
   }
-  if(player2.top === this.x && player2.left === this.y){
+  if(this.player2.top === this.x && this.player2.left === this.y){
     nearFire.player2 = true;
   }
   return nearFire;
@@ -75,12 +77,29 @@ Bomb.prototype._explodeAdjacent = function(x,y) {
     $('#board > div'+id).removeClass('brick').addClass('empty');
     $('#board > div'+id).append(flame);
     $('#bomb-explode').trigger('play');
+    var near = that._playerNear();
+    if(near.player1){
+      var deadDiv1 = $('<div id="1dead" class="winDiv"><img src="css/assets/Bman_dead.png"/></div>');
+      $('#objects').append(deadDiv1);
+      setTimeout(function(){
+        $('#objects > div#1dead').remove();
+      }, 1000);
+    }
+    if(near.player2){
+      console.log('player 2 gets burn');
+      var deadDiv2 = $('<div id="2dead" class="winDiv"><img src="css/assets/Creep_dead.png"/></div>');
+      $('#objects').append(deadDiv2);
+      setTimeout(function(){
+        $('#objects > div#2dead').remove();
+      }, 1000);
+    }
       setTimeout(function(){
         $('#board > div'+id).empty();
         that._updateMap(x,y);
       },2 * 1000);
   },1 * 1000);
 };
+
 
 Bomb.prototype._explode = function() {
   var prevId = '#'+this.y+'-'+this.x;
