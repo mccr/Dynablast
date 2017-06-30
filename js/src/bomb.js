@@ -86,7 +86,6 @@ Bomb.prototype._explodeAdjacent = function(x,y) {
       }, 1000);
     }
     if(near.player2){
-      console.log('player 2 gets burn');
       var deadDiv2 = $('<div id="2dead" class="winDiv"><img src="css/assets/Creep_dead.png"/></div>');
       $('#objects').append(deadDiv2);
       setTimeout(function(){
