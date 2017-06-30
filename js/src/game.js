@@ -23,7 +23,7 @@ Game.prototype._newElements = function(players, flags, map, tileSize) {
   this.player2 = new Player(players.player2.top, players.player2.left, players.player2.playerNum, map, tileSize);
   this.flag1 = new Flag(flags.flag1.top, flags.flag1.left, flags.flag1.flagNum, map, tileSize);
   this.flag2 = new Flag(flags.flag2.top, flags.flag2.left, flags.flag2.flagNum, map, tileSize);
-  this.bomb = new Bomb(map, tileSize);
+  this.bomb = new Bomb(map, tileSize, this.player1, this.player2);
 };
 
 Game.prototype._activeTurn = function(id) {
@@ -52,6 +52,7 @@ Game.prototype.isTurn = function(playerMove) {
     }
   }
 };
+
 
 Game.prototype._timeToChangeTurn = function() {
   var that = this;
