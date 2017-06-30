@@ -53,6 +53,7 @@ Game.prototype.isTurn = function(playerMove) {
   }
 };
 
+
 Game.prototype._timeToChangeTurn = function() {
   var that = this;
   setTimeout(function() {
@@ -83,6 +84,13 @@ Game.prototype.dropBomb = function() {
   } else if (this.turn === 'player2' && this.bombs > 0) {
     this.bombs--;
     this.bomb.dropBomb(this.player2.top, this.player2.left);
+  }
+  var near = this.bomb.playerNear(this.player1, this.player2);
+  if(near.player1){
+    alert('player 1 gets burn');
+  }
+  if(near.player2){
+    alert('player 2 gets burn');
   }
 };
 

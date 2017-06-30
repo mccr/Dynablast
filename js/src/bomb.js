@@ -5,6 +5,21 @@ this.x = 0;
 this.y = 0;
 }
 
+Bomb.prototype.playerNear = function(player1, player2){
+  var nearFire = {
+    player1: false,
+    player2: false
+  };
+
+  if(player1.top === this.x && player1.left === this.y){
+    nearFire.player1 = true;
+  }
+  if(player2.top === this.x && player2.left === this.y){
+    nearFire.player2 = true;
+  }
+  return nearFire;
+};
+
 Bomb.prototype.dropBomb = function(x,y){
   this.x = x;
   this.y = y;
