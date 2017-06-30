@@ -59,6 +59,7 @@ Bomb.prototype._explodeAdjacent = function(x,y) {
           });
     $('#board > div'+id).removeClass('brick').addClass('empty');
     $('#board > div'+id).append(flame);
+    $('#bomb-explode').trigger('play');
       setTimeout(function(){
         $('#board > div'+id).empty();
         that._updateMap(x,y);

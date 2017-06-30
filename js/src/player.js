@@ -18,8 +18,9 @@ Player.prototype._insertPlayer = function() {
 };
 
 Player.prototype.moveForward = function(direction) {
+  this._walkSound();
   this.direction = direction;
-  
+
   switch (this.direction) {
     case 'N':
       this._changeDirection();
@@ -38,6 +39,10 @@ Player.prototype.moveForward = function(direction) {
       this._checkPath();
       break;
   }
+};
+
+Player.prototype._walkSound = function(){
+  $('#walk').trigger('play');
 };
 
 Player.prototype._changeDirection = function(){
